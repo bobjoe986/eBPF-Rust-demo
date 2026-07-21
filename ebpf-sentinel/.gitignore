@@ -1,4 +1,5 @@
 /target
+crates/*/target
 *.log
 .env
 .vscode/

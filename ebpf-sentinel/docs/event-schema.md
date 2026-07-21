@@ -39,3 +39,17 @@ Initial values should be explicit and stable:
 - 21 NetAccept
 
 Do not reuse numeric values after release.
+
+## ProcessExecEvent (schema version 1)
+`ProcessExecEvent` appends these fixed-size fields to `EventHeader`:
+
+- `comm: [u8; 16]` - kernel task name, NUL-terminated when shorter;
+- `exe: [u8; 256]` - executable filename reported by `sched_process_exec`, NUL-terminated and truncated when necessary.
+
+Userspace rejects samples with the wrong size, schema version, or event kind. Byte arrays are
+converted with lossy UTF-8 so malformed kernel data cannot panic the event loop.
+
+Normalized JSONL uses this shape:
+```json
+{"schema_version":1,"event":"process_exec","ts_ns":123456789,"pid":4242,"tgid":4242,"uid":1000,"gid":1000,"cpu":2,"comm":"echo","exe":"/bin/echo"}
+```

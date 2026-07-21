@@ -5,5 +5,4 @@ members = [
     "crates/sentinel-agent",
     "crates/sentinel-anomaly",
 ]
-# sentinel-ebpf is intentionally bootstrapped from the current Aya template/toolchain
-# during M0, then added here if compatible with the selected workspace layout.
+exclude = ["crates/sentinel-ebpf"]

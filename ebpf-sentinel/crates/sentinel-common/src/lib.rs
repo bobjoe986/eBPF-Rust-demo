@@ -1,6 +1,8 @@
 #![no_std]
 
 pub const SCHEMA_VERSION: u16 = 1;
+pub const COMM_LEN: usize = 16;
+pub const EXE_LEN: usize = 256;
 
 #[repr(u16)]
 #[derive(Clone, Copy, Debug, Eq, PartialEq)]
@@ -29,4 +31,12 @@ pub struct EventHeader {
     pub tgid: u32,
     pub uid: u32,
     pub gid: u32,
+}
+
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct ProcessExecEvent {
+    pub header: EventHeader,
+    pub comm: [u8; COMM_LEN],
+    pub exe: [u8; EXE_LEN],
 }

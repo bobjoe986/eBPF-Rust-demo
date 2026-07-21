@@ -27,6 +27,15 @@ Linux kernel
 
 See `AGENTS.md` and `docs/milestones.md` before asking Codex to implement features.
 
+## Milestone 1
+
+The implemented vertical slice attaches an Aya tracepoint to `sched:sched_process_exec`, publishes
+the versioned fixed-size `ProcessExecEvent` through a ring buffer, and emits normalized JSONL from
+`sentinel-agent`. Ring-buffer publication failures are counted in the `DROP_COUNT` map.
+
+Build, privilege, runtime, smoke-test, and verification commands are documented in
+[`docs/testing.md`](docs/testing.md). File and network hooks are intentionally not present.
+
 ## Recommended first Codex task
 
 > Read AGENTS.md and docs/architecture.md. Implement Milestone 1 only: a minimal Aya process-exec vertical slice that emits a versioned shared event through a ring buffer and prints normalized JSONL in userspace. Add a smoke-test script and document all commands used. Do not add file/network hooks yet.

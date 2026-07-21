@@ -1,5 +1,7 @@
 # sentinel-ebpf
 
-Bootstrap this crate during Milestone M0 using the current official Aya template/toolchain rather than freezing an old Aya eBPF scaffold in this starter repository.
+Aya eBPF producer for the M1 `sched_process_exec` tracepoint. It emits only bounded process metadata
+through `EVENTS` and records ring-buffer publication failures in `DROP_COUNT`.
 
-Codex should preserve the repository architecture and shared ABI described in `AGENTS.md` and `docs/` while adapting the current Aya template.
+This crate is excluded from the host workspace because it builds for `bpfel-unknown-none` with a
+nightly toolchain. See `docs/testing.md` for exact commands.
